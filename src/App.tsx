@@ -1,7 +1,7 @@
 import { Navbar } from './components/Navbar'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { Home } from './pages/Home'
-import { Projects, About, Contact, Tools } from './pages/PlaceholderPages'
+import { Projects, About, Contact } from './pages/PlaceholderPages'
 import { ReactLenis } from 'lenis/react'
 import { AnimatePresence } from 'framer-motion'
 
