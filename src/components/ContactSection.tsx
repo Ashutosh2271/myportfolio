@@ -1,9 +1,22 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { User, Mail, Phone, Calendar, Briefcase, MessageSquare, MapPin } from 'lucide-react'
 import { SiGithub, SiInstagram, SiPatreon } from 'react-icons/si'
 import { FaLinkedin } from 'react-icons/fa'
 
 export function ContactSection() {
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle')
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('submitting')
+    // Simulate an API call
+    setTimeout(() => {
+      setStatus('success')
+      // Reset after 3 seconds
+      setTimeout(() => setStatus('idle'), 3000)
+    }, 1500)
+  }
   return (
     <section className="py-24 bg-black relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -16,7 +29,7 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {/* Name */}
@@ -112,9 +125,12 @@ export function ContactSection() {
               <div className="mt-4">
                 <button 
                   type="submit" 
-                  className="bg-transparent border border-white/20 text-white font-medium px-8 py-3 rounded-full hover:bg-white/5 transition-colors"
+                  disabled={status !== 'idle'}
+                  className={`border border-white/20 font-medium px-8 py-3 rounded-full transition-colors flex justify-center items-center ${
+                    status === 'success' ? 'bg-green-500 text-black border-transparent' : 'bg-transparent text-white hover:bg-white/5'
+                  }`}
                 >
-                  Send Message
+                  {status === 'submitting' ? 'Sending...' : status === 'success' ? 'Message Sent Successfully!' : 'Send Message'}
                 </button>
               </div>
             </form>
