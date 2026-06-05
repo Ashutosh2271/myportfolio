@@ -42,6 +42,14 @@ export function ProjectsSection() {
       tags: ["React", "IT Solutions"],
       github: "#",
       demo: "https://sky-sk.appadvent.in/"
+    },
+    {
+      title: "Modern E-Commerce",
+      description: "A full-featured e-commerce platform with a modern shopping experience.",
+      image: "/ecommerce.png",
+      tags: ["E-Commerce", "React", "Next.js"],
+      github: "#",
+      demo: "https://e-commerce-23.vercel.app/"
     }
   ]
 
@@ -86,7 +94,7 @@ export function ProjectsSection() {
           transition={{
             repeat: Infinity,
             ease: "linear",
-            duration: 40
+            duration: 20
           }}
           whileHover={{ animationPlayState: "paused" }} // Optionally pause on hover, though framer-motion doesn't support this natively with `animate`. We'll just let it slide.
         >
